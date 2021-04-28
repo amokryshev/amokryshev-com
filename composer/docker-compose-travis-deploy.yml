@@ -1,0 +1,16 @@
+version: "3.8"
+
+services:
+  mainsite:
+    build:
+      context: ./..
+      dockerfile: mainsite.dockerfile.substituted
+      args:
+        - MV_RUN_SCRIPT_MAINSITE=shell_scripts/deploy_mainsite_container.sh
+
+  nginx:
+    build:
+      context: ./..
+      dockerfile: nginx.dockerfile.substituted
+      args:
+        - MV_RUN_SCRIPT_NGINX=shell_scripts/deploy_nginx_container.sh

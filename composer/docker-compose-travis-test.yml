@@ -1,0 +1,16 @@
+version: "3"
+
+services:
+
+  db:
+    image: postgres
+    ports:
+      - "5432:5432"
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: ${DJ_DEFAULT_DB_PASS}
+
+  cache:
+    image: redis
+    ports:
+      - "6379:6379"

@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% trans "Александр Мокрышев - ИТ-менеджер" %}{% endblock %}
+{% block content %}
+
+{% include "snippets/hero.html" %}
+
+  <main id="main">
+      {% include "snippets/about.html" %}
+      {% include "snippets/portfolio.html" %}
+      {% include "snippets/services.html" %}
+      {% include "snippets/facts.html" %}
+      {% include "snippets/skills.html" %}
+      {% include "snippets/cv.html" %}
+      {% include "snippets/testimonials.html" %}
+  </main>
+
+{% endblock %}

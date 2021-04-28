@@ -1,0 +1,11 @@
+{% load i18n %}
+<section id="skills" class="skills section-rollable section-rolled">
+  <div class="container">
+    <div class="section-title section-title-rolled">
+      <h2>{% trans 'Навыки' %}</h2>
+    </div>
+    <div id="skills-chart" ></div>
+    {% autoescape off %}
+        <div id="skills-chart-data" data='{{ skills }}'/>
+    {% endautoescape %}
+</section>

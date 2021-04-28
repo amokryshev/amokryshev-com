@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+{% load i18n static mainsite_extras %}
+{% block title %}{% trans "АM - " %}{{ article.title }}{% endblock %}
+{% block lang %}
+            <a href="{% language 'ru' %}{% url request.resolver_match.view_name article.slug %}{% endlanguage %}"><img src="{% static 'img/ru.svg' %}"></a>
+            <a href="{% language 'en' %}{% url request.resolver_match.view_name article.slug %}{% endlanguage %}"><img src="{% static 'img/gb.svg' %}"></a>
+{% endblock %}
+{% block content %}
+  <main id="main">
+    <section class="breadcrumbs">
+      <div class="container">
+        <div class="d-flex justify-content-between align-items-center">
+          <h2>{{ article.title }}</h2>
+          <ol>
+              {% for item in breadcrumbs %}
+               <li>
+                  {% if item.link %}
+                      <a href="{{ item.link }}">{{ item.text }}<span class="bx bx-link"/></a>
+                  {% else %}
+                      {{ item.text }}
+                  {% endif %}
+               </li>
+              {% endfor %}
+          </ol>
+        </div>
+      </div>
+    </section>
+    <section id="portfolio-details" class="portfolio-details">
+      <div class="container ">
+        <div class="portfolio-info col-lg-6" data-aos="fade-left">
+            <img src="{% media article.picture.name %}" alt="" class="img-fluid">
+            <ul>
+                <li>{{ article.pub_date }}</li>
+                {% if article.author  %}
+                    <li>
+                        {% if article.author_link %}
+                            <a href="{{ article.author_link }}">{{ article.author }}<span class="bx bx-link"/></a>
+                        {% else %}
+                            {{ article.author }}
+                        {% endif %}
+                    </li>
+                {% endif %}
+                {% if article.source  %}
+                    <li>
+                        {% if article.source_link %}
+                            <a href="{{ article.source_link }}">{{ article.source }}<span class="bx bx-link"/></a></li>
+                        {% else %}
+                            {{ article.source }}
+                        {% endif %}
+
+                    </li>
+                {% endif %}
+                <li>{% autoescape off %}{{ article.summary }}{% endautoescape %}</li>
+                <li>
+                    {% for tag in article.tags|split_tags %}
+                        <div class="badge badge-primary">{{ tag }}</div>
+                    {% endfor %}
+                </li>
+            </ul>
+        </div>
+        <div class="portfolio-content" data-aos="zoom-in-up">
+            {% autoescape off %}{{ article.content }}{% endautoescape %}
+        </div>
+      </div>
+    </section>
+    {% include "snippets/related.html" %}
+  </main>
+{% endblock %}
+{% block bundle %}
+{% load render_bundle from webpack_loader %}
+{% render_bundle 'mainsite_inner' %}
+{%  endblock %}

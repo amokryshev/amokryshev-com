@@ -1,0 +1,19 @@
+{% load i18n %}
+<section id="services" class="services">
+      <div class="container">
+
+        <div class="section-title">
+          <h2>{% trans 'Услуги' %}</h2>
+          {% autoescape off %}{{ services.intro }}{% endautoescape %}
+        </div>
+        <div class="row">
+          {% for item in services.details %}
+          <div class="col-lg-6 col-md-6 icon-box" data-aos="fade-up">
+            <div class="icon"><i class="{{ item.icon }}"></i></div>
+            <h4 class="title">{% if item.href %}<a href="{{ item.href }}">{{ item.title }}</a>{% else %}{{ item.title }}{% endif %}</h4>
+            <p class="description">{{ item.description }}</p>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </section>

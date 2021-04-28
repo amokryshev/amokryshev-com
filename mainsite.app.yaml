@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mainsite
+spec:
+  selector:
+    matchLabels:
+      app: mainsite
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: mainsite
+    spec:
+      containers:
+      - name: mainsite
+        image: eu.gcr.io/amokryshev-com/mainsite:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8000
+        securityContext:
+          privileged: true
+      restartPolicy: Always
+
+
+

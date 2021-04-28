@@ -1,0 +1,26 @@
+{% load i18n mainsite_extras %}
+<section id="testimonials" class="testimonials">
+      <div class="container">
+
+        <div class="section-title">
+          <h2>{%  trans 'Рекомендации' %}</h2>
+          {% autoescape off %}{{ testimonials.intro }}{% endautoescape %}
+        </div>
+
+        <div class="owl-carousel testimonials-carousel">
+          {% for item in testimonials.details %}
+          <div class="testimonial-item" data-aos="fade-up">
+            <p>
+              <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+              {{ item.text }}
+              <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+            </p>
+            <img src="{% media item.picture  %} " class="testimonial-img" alt="">
+            <h3>{{ item.person }}</h3>
+            <h4>{{ item.position }}</h4>
+          </div>
+          {% endfor %}
+        </div>
+
+      </div>
+    </section>

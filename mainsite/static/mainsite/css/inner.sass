@@ -1,0 +1,54 @@
+@import ~venobox/venobox/venobox.css
+@import ~owl.carousel/dist/assets/owl.carousel.min.css
+@import ~aos/dist/aos.css
+@import base.sass
+
+
+.portfolio-details 
+  padding-top: 40px
+  position: relative
+
+.portfolio-info
+  padding: 30px
+  position: relative
+  margin-left: 10px
+  background: #fff
+  box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.1)
+  float: right
+  z-index: 2
+
+.portfolio-info h3
+  font-size: 22px
+  font-weight: 400
+  margin-bottom: 20px
+  padding-bottom: 20px
+  border-bottom: 1px solid #eee
+
+.portfolio-info ul
+  list-style: none
+  padding: 0
+  font-size: 15px
+
+.portfolio-info ul li + li
+  margin-top: 10px
+
+.portfolio-info ul li p
+  font-size: 20px
+  font-weight: 500
+
+.owl-item .portfolio-info:hover
+  border: 2px solid #007bff
+
+.owl-item .portfolio-info:active
+  border: 3px solid #007bff
+
+
+@media (max-width: 768px) 
+  .portfolio-description h2
+    width: 100%
+  
+  .portfolio-info
+    position: static
+    margin-top: 30px
+
+

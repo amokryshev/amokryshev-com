@@ -1,0 +1,45 @@
+{% load i18n mainsite_extras %}
+<section class="related section-bg">
+      <div class="container">
+        <div class="section-title">
+          <h2>{%  trans 'Похожие статьи' %}</h2>
+        </div>
+        <div class="owl-carousel related-carousel">
+          {% for item in article.related.all %}
+          <div class="related-item" data-aos="fade-up">
+            <div id='portfolio-info' class="portfolio-info" link="{{ internal_link }}{{ item.slug }}">
+                <h5>{{ item.title }}</h5>
+                <img src="{% picture item.picture.name %}" alt="" class="img-fluid">
+                <ul>
+                    <li>{{ item.pub_date }}</li>
+                    {% if item.author  %}
+                        <li>
+                            {% if item.author_link %}
+                                <a href="{{ item.author_link }}">{{ item.author }}<span class="bx bx-link"/></a>
+                            {% else %}
+                                {{ item.author }}
+                            {% endif %}
+                        </li>
+                    {% endif %}
+                    {% if item.source  %}
+                        <li>
+                            {% if item.source_link %}
+                                <a href="{{ item.source_link }}">{{ item.source }}<span class="bx bx-link"/></a></li>
+                            {% else %}
+                                {{ item.source }}
+                            {% endif %}
+
+                        </li>
+                    {% endif %}
+                    <li>
+                        {% for tag in item.tags|split_tags %}
+                            <div class="badge badge-primary">{{ tag }}</div>
+                        {% endfor %}
+                    </li>
+                </ul>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </section>

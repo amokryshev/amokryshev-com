@@ -1,0 +1,83 @@
+version: "3.8"
+
+services:
+  db:
+    image: postgres
+    networks:
+      - backend
+    ports:
+      - "5433:5432"
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: mysecretpassword
+      POSTGRES_HOST: db
+
+  cache:
+    image: redis
+    networks:
+      - backend
+    ports:
+      - "6379:6379"
+
+  mainsite:
+    build:
+      context: ./..
+      dockerfile: mainsite.dockerfile
+      args:
+        - MV_RUN_SCRIPT_MAINSITE=shell_scripts/start_mainsite_container.sh
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+      - cache
+    networks:
+      - backend
+      - frontend
+    volumes:
+      - /home/amokryshev/uploads
+    environment:
+      DJ_DEBUG: "False"
+      DJ_SECRET_KEY: "*a9-nw7*lkj#*ejppa8n!ziriphkfebpm#&w&9-auxwbugam=b"
+      DJ_START_SERVER_AT_HOST: "0.0.0.0:8000"
+      DJ_ALLOWED_HOSTS: "0.0.0.0,127.0.0.1"
+      DJ_DEFAULT_DB_NAME: "amokryshev_com"
+      DJ_DEFAULT_DB_USER: "postgres"
+      DJ_DEFAULT_DB_PASS: "mysecretpassword"
+      DJ_DEFAULT_DB_HOST: "db"
+      DJ_DEFAULT_DB_PORT: 5432
+      DJ_ADM_DB_NAME: "postgres"
+      DJ_ADM_DB_USER: "postgres"
+      DJ_ADM_DB_PASS: "mysecretpassword"
+      DJ_ADM_DB_HOST: "db"
+      DJ_ADM_DB_PORT: 5432
+      DJ_CACHE_URL: "redis://cache:6379/1"
+      DJ_CACHE_PREFIX: "mainsite"
+      DJ_CACHE_TIMEOUT: 200
+      DJ_AN: "admin"
+      DJ_AE: "admin@admin.ru"
+      DJ_AP: "admin"
+  nginx:
+    build:
+      context: ./..
+      dockerfile: nginx.dockerfile
+      args:
+        - MV_RUN_SCRIPT_NGINX=shell_scripts/start_nginx_container.sh
+    ports:
+      - "8180:80"
+    depends_on:
+      - mainsite
+    networks:
+      - frontend
+    volumes_from:
+      - mainsite:ro
+    environment:
+      NG_LISTEN: "*:80"
+      NG_SERVER_NAME: "*.amokryshev.com"
+      NG_PROXY_PASS: "http://mainsite:8000"
+      NG_STATIC_EXPIRES: "10s"
+
+networks:
+  backend:
+    driver: bridge
+  frontend:
+    driver: bridge

@@ -1,0 +1,48 @@
+{% load i18n mainsite_extras %}
+<section id="about" class="about">
+      <div class="container">
+        <div class="section-title">
+          <h2>{% trans "Обо мне" %}</h2>
+          <p>{{ about.intro }}</p>
+        </div>
+        <div class="row">
+          <div class="col-lg-4" data-aos="fade-right">
+            <img src="{% media about.picture %}" class="img-fluid" alt="">
+          </div>
+          <div class="col-lg-8 pt-4 pt-lg-0 content" data-aos="fade-left">
+            {% autoescape off %}
+            <h3>{{ about.role }}</h3>
+            <p class="font-italic">
+              {{ about.sub_role }}
+            </p>
+            {% endautoescape %}
+            <div class="row">
+              {% for col in about.features %}
+                <div class="col-lg-6">
+                <ul>
+                  {% for feature in col %}
+                  <li><i class="icofont-rounded-right"></i> <strong>{{ feature.key }}: </strong>
+                    {% if feature.href %}
+                        <a href="{{ feature.href }}">{{ feature.value }}<span class="bx bx-link"/></a>
+                    {% else %}
+                        {{ feature.value }}
+                    {% endif %}
+                  </li>
+                  {% endfor %}
+                </ul>
+              </div>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-12" data-aos="fade-right">
+            <p>
+              <h5>
+               {{ about.message }}
+              </h5>
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>

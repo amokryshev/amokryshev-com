@@ -1,0 +1,23 @@
+{% load i18n mainsite_extras %}
+ <section id="resume" class="resume section-bg section-rollable section-rolled">
+      <div class="container">
+        <div class="section-title">
+          <h2>{% trans "Curriculum Vitae" %}</h2>
+        </div>
+          {% for chapter in cv %}
+         <div class="row">
+          <div class="col" data-aos="fade-up">
+            <h3 class="resume-title">{{ chapter.chapter }}</h3>
+            {% for item in chapter.items  %}
+            <div class="resume-item pb-0">
+              <h4>{{ item.title }}</h4>
+              {% if item.period %}<h5>{{ item.period }}</h5>{% endif %}
+              {% if item.description %}<p><em>{{ item.description }}</em></p>{% endif %}
+              {% autoescape off %}{% cv_tiered_list item.details %}{% endautoescape %}
+            </div>
+            {% endfor %}
+          </div>
+         </div>
+          {% endfor %}
+      </div>
+ </section>

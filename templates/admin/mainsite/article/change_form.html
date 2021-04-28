@@ -1,0 +1,11 @@
+{% extends "admin/change_form.html" %}
+{% load static %}
+
+{% block extrahead %}
+    <script src="{% static 'dist/jquery.min.js' %}"></script>
+    <script src="{% static 'ui/widget.js' %}"></script>
+    <script src="{% static 'dist/umd/popper.min.js' %}"></script>
+    <script src="{% static 'dist/js/bootstrap.min.js' %}"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'dist/css/bootstrap.min.css' %}">
+    {{ block.super }}
+{% endblock %}

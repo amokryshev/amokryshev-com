@@ -1,0 +1,96 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-02-23 18:43+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: amokryshev/settings.py:117
+msgid "Russian"
+msgstr "Русский"
+
+#: amokryshev/settings.py:118
+msgid "English"
+msgstr "Английский"
+
+#: mainsite/templates/index.html:3
+msgid "Александр Мокрышев - ИТ-менеджер"
+msgstr "Alexander Mokryshev - an IT-manager"
+
+#: mainsite/templates/snippets/about.html:5
+msgid "Обо мне"
+msgstr "About"
+
+#: mainsite/templates/snippets/cv.html:5
+msgid "Curriculum Vitae"
+msgstr "Curriculum Vitae"
+
+#: mainsite/templates/snippets/facts.html:6
+msgid "Опыт по отраслям"
+msgstr "Experience"
+
+#: mainsite/templates/snippets/hero.html:4 templates/base.html:26
+#: templates/base.html:65
+msgid "Александр Мокрышев"
+msgstr "Alexander Mokryshev"
+
+#: mainsite/templates/snippets/portfolio.html:6
+msgid "Блог"
+msgstr "Blog"
+
+#: mainsite/templates/snippets/portfolio.html:11
+msgid "Все"
+msgstr "All"
+
+#: mainsite/templates/snippets/portfolio.html:12
+msgid "Приложения"
+msgstr "App"
+
+#: mainsite/templates/snippets/portfolio.html:13
+msgid "Статьи"
+msgstr "Articles"
+
+#: mainsite/templates/snippets/portfolio.html:14
+msgid "Разное"
+msgstr "Other"
+
+#: mainsite/templates/snippets/services.html:6
+msgid "Услуги"
+msgstr "Services"
+
+#: mainsite/templates/snippets/skills.html:5
+msgid "Навыки"
+msgstr "Skills"
+
+#: mainsite/templates/snippets/testimonials.html:6
+msgid "Рекомендации"
+msgstr "Testimonials"
+
+#: templates/base.html:9
+msgid "Заголовок по умолчанию"
+msgstr "Default Title"
+
+msgid "Начало"
+msgstr "Home"
+
+msgid "Резюме"
+msgstr "Resume"
+
+msgid "год"
+msgstr "year"
+
+msgid "года"
+msgstr "years"

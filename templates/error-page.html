@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %} {{ error_code }} {% endblock %}
+{% block content %}
+<main id="main">
+    <section id="error" class="section">
+      <div class="container">
+        <div class="section-title">
+          <h2>{{ error_code }}</h2>
+            <p><h5>{% trans error_text %}</h5></p>
+        </div>
+      </div>
+    </section>
+</main>
+{% endblock %}
+{% block lang %}{%  endblock %}
+{% block bundle %}
+        {% load render_bundle from webpack_loader %}
+        {% render_bundle 'mainsite_error' %}
+{%  endblock %}

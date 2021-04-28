@@ -1,0 +1,11 @@
+.DS_Store
+yarn-error.log
+node_modules
+__pycache__
+db.sqlite3
+.env
+.env.docker.local
+amokryshev-com-ed5e5b49836f.json
+uploads
+.travis.unencrypted.yml
+encrypt_travis.sh

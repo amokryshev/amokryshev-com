@@ -1,0 +1,27 @@
+{% load i18n mainsite_extras %}
+<section id="facts" class="facts section-bg">
+      <div class="container">
+
+        <div class="section-title">
+          <h2>{% trans "Опыт по отраслям" %}</h2>
+          <p>{{ facts.intro }}</p>
+        </div>
+
+        <div class="row no-gutters">
+          {% autoescape off %}
+          {% for item in facts.items %}
+          <div class="col-lg-3 col-md-6 d-md-flex align-items-md-stretch" data-aos="fade-up" data-aos-delay="200">
+            <div class="count-box">
+              <i class="icofont-cart"></i>
+              <span data-toggle="counter-up">{{ item.years }}</span><strong>{% years_verbose item.years as verb_year %}{% trans verb_year %}</strong>
+              <p><strong>{{ item.branch }}</strong><br>{{ item.details }}</p>
+            </div>
+          </div>
+          {% endfor %}
+          {%  endautoescape %}
+        </div>
+        <div class="row no-gutters">
+          <p> {{ facts.finale }}</p>
+        </div>
+      </div>
+</section>

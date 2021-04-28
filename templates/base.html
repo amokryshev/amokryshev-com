@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+{% load i18n static %}
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title> {% block title %}{% trans "Заголовок по умолчанию" %}{% endblock %} </title>
+
+   <script async src="https://www.googletagmanager.com/gtag/js?id=G-63PG15THBW"></script>
+   <script>
+     window.dataLayer = window.dataLayer || [];
+     function gtag(){dataLayer.push(arguments);}
+     gtag('js', new Date());
+     gtag('config', 'G-63PG15THBW');
+   </script>
+
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <link href="/static/img/favicon.png" rel="icon">
+  <link href="/static/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+</head>
+
+<body>
+
+  <button type="button" class="mobile-nav-toggle d-xl-none"><i class="icofont-navigation-menu"></i></button>
+
+  <header id="header">
+    <div class="d-flex flex-column">
+      <div class="profile">
+        <img src="{% static 'img/profile-img2.jpg' %}" alt="" class="img-fluid rounded-circle">
+        <h1 class="text-light"><a href="{% url 'index' %}">{% trans "Александр Мокрышев" %}</a></h1>
+        <div class="social-links mt-3 text-center">
+        {% for link in social_links %}
+            <a href="{{link.href}}" class="{{link.style}}"><i class="{{link.icon}}"></i></a>
+        {% endfor %}
+        </div>
+      </div>
+      <nav class="nav-menu">
+       <ul>
+       {% block menu %}
+           {% for link in main_menu %}
+            <li {% if link.is_active %} class="active" {% endif %}>
+                <a href="{% url link.view %}{{ link.anchor }}">
+                    <i class="{{link.icon}}"></i>
+                    <span>{% trans link.text %}</span></a>
+           </li>
+           {% endfor %}
+       {% endblock %}
+        </ul>
+      </nav>
+      <button type="button" class="mobile-nav-toggle d-xl-none"><i class="icofont-navigation-menu"></i></button>
+      <div class="languages mt-3 text-center">
+          {% block lang %}
+            <a href="{% language 'ru' %}{% url request.resolver_match.view_name %}{% endlanguage %}"><img src="{% static 'img/ru.svg' %}"></a>
+            <a href="{% language 'en' %}{% url request.resolver_match.view_name %}{% endlanguage %}"><img src="{% static 'img/gb.svg' %}"></a>
+          {% endblock %}
+      </div>
+    </div>
+
+  </header>
+
+
+  {% block content %}<br><br><br><br><br><br><br><br>{% endblock %}
+
+
+  <footer id="footer">
+    <div class="container">
+      <div class="copyright">
+        &copy; Copyright <strong><span>{% trans "Александр Мокрышев" %}</span></strong>
+      </div>
+    </div>
+  </footer>
+
+  <a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>
+
+
+</body>
+    {% block bundle %}
+        {% load render_bundle from webpack_loader %}
+        {% render_bundle 'mainsite_index' %}
+    {%  endblock %}
+</html>
